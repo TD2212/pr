@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Student List{% endblock %}
+
+{% block content %}
+
+<h1>All Students</h1>
+
+<table border="1" cellpadding="12">
+    <thead>
+        <tr>
+            
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>City</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+
+<tbody>
+    {% for s in student %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        
+        <td>{{ s.S_name }}</td>
+        <td>{{ s.S_email }}</td>
+        <td>{{ s.S_mobile }}</td>
+        <td>{{ s.S_city }}</td>
+        <td>
+            <a href="{% url 'update' s.S_id %}">update</a>
+            <a href="{% url 'delete' s.S_id %}">Delete</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="7">No students found.</td>
+    </tr>
+    {% endfor %}
+</tbody>
+
+
+</table>
+
+{% endblock %}
