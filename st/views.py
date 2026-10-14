@@ -48,13 +48,13 @@ def st_update(request, id):
     s = get_object_or_404(student, S_id=id)
 
     if request.method == 'POST':
-        s.S_name = request.POST.get('S_name')
-        s.S_email = request.POST.get('S_email')
-        s.S_mobile = request.POST.get('S_mobile')
-        s.S_city = request.POST.get('S_city')
+        form = STUDENTFORM(request.POST, instance=s)
 
-        s.save()
+        if form.is_valid():
+            form.save()
+            return redirect('list')
 
-        return redirect('list')
+    else:
+        form = STUDENTFORM(instance=s)
 
-    return render(request, 'cruds/update.html', {'s': s})
+    return render(request, 'cruds/update.html', {'form': form})

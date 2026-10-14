@@ -1,26 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-    <form method="POST">
+<form method="POST">
         {% csrf_token %}
 
-        <label>Name:</label>
-        <input type="text" name="S_name" value="{{ s.S_name }}" required>
-        <br><br>
-
-        <label>Email:</label>
-        <input type="email" name="S_email" value="{{ s.S_email }}" required>
-        <br><br>
-
-        <label>Mobile:</label>
-        <input type="text" name="S_mobile" value="{{ s.S_mobile }}" required>
-        <br><br>
-
-        <label>City:</label>
-        <input type="text" name="S_city" value="{{ s.S_city }}" required>
-        <br><br>
+        {{ form.as_p }}
 
         <button type="submit">Update Student</button>
-        <a href="{% url 'list' %}">Cancel</a>
     </form>
 
 {% endblock %}
